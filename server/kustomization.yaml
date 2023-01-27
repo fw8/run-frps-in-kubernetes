@@ -1,0 +1,10 @@
+namespace: frps
+resources:
+- ns.yaml
+- deployment.yaml
+- frps-service.yaml
+- proxy-service.yaml
+configMapGenerator:
+- name: frps-config
+  files:
+  - frps.ini

@@ -1,0 +1,18 @@
+services:
+
+  echo:
+    image: mendhak/http-https-echo
+    environment:
+      HTTP_PORT: 8080
+
+  frpc:
+    image: snowdreamtech/frpc:latest
+    environment:
+      FRP_SERVER_ADDR: ${FRP_SERVER_ADDR:?please set FRP_SERVER_ADDR environment variable}
+      FRP_SERVER_PORT: ${FRP_SERVER_PORT:-7000}
+      LOCAL_SERVICE: echo
+      LOCAL_PORT: 8080
+      DOMAINS: "www.test.de"
+
+    volumes:
+      - ./frpc.ini:/etc/frp/frpc.ini:ro
